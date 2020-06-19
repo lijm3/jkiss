@@ -18,7 +18,7 @@
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
     
     
-    <link rel="icon" href="/images/favicon.ico">
+    <link rel="icon" href="/images/bitbug_favicon.ico">
     
 
     <style type="text/css">
@@ -180,12 +180,66 @@
 <li>博客内容可以轻松打包、转移、发布到其它平台；</li>
 <li>等等</li>
 </ul>
-<h2 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h2><p>在开始一切之前，你必须已经：</p>
+<h3 id="1-1-准备工作"><a href="#1-1-准备工作" class="headerlink" title="1.1 准备工作"></a>1.1 准备工作</h3><p>在开始一切之前，你必须已经：</p>
 <ul>
 <li>有一个github账号，没有的话去注册一个；</li>
 <li>安装了node.js、npm，并了解相关基础知识；</li>
 <li>安装了git for windows（或者其它git客户端）</li>
 </ul>
+<h2 id="2-搭建github博客"><a href="#2-搭建github博客" class="headerlink" title="2.搭建github博客"></a>2.搭建github博客</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1. 创建仓库"></a>2.1. 创建仓库</h3><p>新建一个名为你的用户名.github.io的仓库，比如说，如果你的github用户名是test，那么你就新建test.github.io的仓库（必须是你的用户名，其它名称无效），将来你的网站访问地址就是 <a href="http://test.github.io" target="_blank" rel="noopener">http://test.github.io</a> 了，是不是很方便？</p>
+<p>由此可见，每一个github账户最多只能创建一个这样可以直接使用域名访问的仓库。</p>
+<p>几个注意的地方：</p>
+<ul>
+<li>注册的邮箱一定要验证，否则不会成功；</li>
+<li>仓库名字必须是：username.github.io，其中username是你的用户名；</li>
+<li>仓库创建成功不会立即生效，需要过一段时间，大概10-30分钟，或者更久，我的等了半个小时才生效；<br><img src="images/jck.png" alt=""></li>
+</ul>
+<p><font color=red >注意：</font><br>Github 仅能使用一个同名仓库的代码托管一个静态站点。<br>Github 中仓库名称: 用户名.github.io</p>
+<h3 id="2-2-设置git全局用户名"><a href="#2-2-设置git全局用户名" class="headerlink" title="2.2. 设置git全局用户名"></a>2.2. 设置git全局用户名</h3><p>设置git全局用户名 方便将本地文件提交到github</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"yourname"</span></span><br><span class="line">git config --global user.email <span class="string">"youremail"</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的yourname输入你的GitHub用户名，youremail输入你GitHub的邮箱。这样GitHub才能知道你是不是对应它的账户。例如我的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"lijm3"</span></span><br><span class="line">git config --global user.email <span class="string">"lijm3@qq.com"</span></span><br></pre></td></tr></table></figure>
+<p>可以用以下两条，检查一下你有没有输对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global -l</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-使用hexo写博客"><a href="#3-使用hexo写博客" class="headerlink" title="3.使用hexo写博客"></a>3.使用hexo写博客</h2><h3 id="3-1-hexo简介"><a href="#3-1-hexo简介" class="headerlink" title="3.1. hexo简介"></a>3.1. hexo简介</h3><p>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</p>
+<p><a href="http://hexo.io" target="_blank" rel="noopener">hexo官网</a><br>github: <a href="https://github.com/hexojs/hexo" target="_blank" rel="noopener">https://github.com/hexojs/hexo</a></p>
+<h3 id="3-2-原理"><a href="#3-2-原理" class="headerlink" title="3.2. 原理"></a>3.2. 原理</h3><p>由于github pages存放的都是静态文件，博客存放的不只是文章内容，还有文章列表、分类、标签、翻页等动态内容，假如每次写完一篇文章都要手动更新博文目录和相关链接信息，相信谁都会疯掉，所以hexo所做的就是将这些md文件都放在本地，每次写完文章后调用写好的命令来批量完成相关页面的生成，然后再将有改动的页面提交到github。</p>
+<h3 id="3-3-注意事项"><a href="#3-3-注意事项" class="headerlink" title="3.3. 注意事项"></a>3.3. 注意事项</h3><p>安装之前先来说几个注意事项：</p>
+<ul>
+<li>很多命令既可以用Windows的cmd来完成，也可以使用git bash来完成，但是部分命令会有一些问题，为避免不必要的问题，建议全部使用git bash来执行；</li>
+<li>hexo不同版本差别比较大，网上很多文章的配置信息都是基于2.x的，所以注意不要被误导；</li>
+<li>hexo有2种_config.yml文件，一个是根目录下的全局的_config.yml，一个是各个theme下的；</li>
+</ul>
+<h3 id="3-4-安装"><a href="#3-4-安装" class="headerlink" title="3.4. 安装"></a>3.4. 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p>安装完后输入hexo -v验证是否安装成功。</p>
+<p>至此hexo就安装完了。</p>
+<p>接下来初始化一下hexo,即初始化我们的网站，输入hexo init初始化文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init MyBlog</span><br></pre></td></tr></table></figure>
+<p>这个MyBlog可以自己取什么名字都行，然后，接着输入npm install安装必备的组件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> MyBlog      //进入这个MyBlog文件夹</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>查看hexo插件安装情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm ls --depth 0</span><br></pre></td></tr></table></figure>
+<p>.<br>├── node_modules：是依赖包<br>├── public  #存放被解析markdown、html文件<br>├── scaffolds #当您新建文章时，根据 scaffold生成文件<br>├── source  #资源文件夹<br>|   └── _posts #博客文章目录<br>└── themes #主题<br>├── _config.yml   #网站的配置信息。标题、网站名称等<br>├── db.json：#source解析所得到的<br>├── package.json  # 应用程序的配置信息</p>
+<p>这样本地的网站配置也弄好啦，输入hexo g生成静态网页，然后输入hexo s打开本地服务器，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo server(或者简写:hexo s）)</span><br></pre></td></tr></table></figure>
+
+<p>然后浏览器打开<a href="http://localhost:4000/，就可以看到我们的博客啦，效果如下：" target="_blank" rel="noopener">http://localhost:4000/，就可以看到我们的博客啦，效果如下：</a></p>
+<p>按ctrl+c关闭本地服务器。</p>
+<p>查看hexo插件安装情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm ls --depth 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-将hexo部署到GitHub"><a href="#4-将hexo部署到GitHub" class="headerlink" title="4.将hexo部署到GitHub"></a>4.将hexo部署到GitHub</h2><p>这一步，我们就可以将hexo和GitHub关联起来，也就是将hexo生成的文章部署到GitHub上，打开博客根目录下的_config.yml文件，这是博客的配置文件，在这里你可以修改与博客配置相关的各种信息</p>
+<h3 id="4-1-修改-config-yml最后一行的配置"><a href="#4-1-修改-config-yml最后一行的配置" class="headerlink" title="4.1 修改_config.yml最后一行的配置"></a>4.1 修改_config.yml最后一行的配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/shw2018/shw2018.github.io</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>repository修改为你自己的github项目地址即可，就是部署时，告诉工具，将生成网页通过git方式上传到你对应的链接仓库中。</p>
+<h3 id="4-2-安装deploy-git"><a href="#4-2-安装deploy-git" class="headerlink" title="4.2. 安装deploy-git"></a>4.2. 安装deploy-git</h3><p>这个时候需要先安装deploy-git ，也就是部署的命令,这样你才能用命令部署到GitHub。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-发布"><a href="#4-3-发布" class="headerlink" title="4.3. 发布"></a>4.3. 发布</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>其中 hexo clean清除了你之前生成的东西，也可以不加。 hexo generate顾名思义，生成静态文章，可以用 hexo g缩写 ，hexo deploy部署文章，可以用hexo d缩写</p>
+<p>注意deploy时可能要你输入username和password</p>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
         
